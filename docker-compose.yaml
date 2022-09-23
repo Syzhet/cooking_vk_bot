@@ -1,0 +1,10 @@
+version: '3.3'
+
+services:
+  db:
+    image : postgres:${TAG}
+    restart: always
+    ports:
+      - ${DB_PORT}:5432
+    env_file:
+      - .env

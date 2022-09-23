@@ -1,22 +1,42 @@
-import os
+import logging
+
 from dotenv import load_dotenv
-from vkwave.bots import SimpleLongPollBot, SimpleBotEvent
-from vkwave.bots.utils.uploaders import PhotoUploader
+from vkwave.bots import SimpleLongPollBot, TaskManager
+
+
+from cooking_bot.config import load_config
+from cooking_bot.db_api.db_gino import db, on_startup
 
 load_dotenv()
 
-bot = SimpleLongPollBot(tokens=os.getenv('TOKEN'), group_id=216069290)
-
-@bot.message_handler(bot.command_filter('mem')) # отправляем изображение по команде
-async def send_photo(event: SimpleBotEvent):
-    user_id = event.object.object.message.peer_id
-    photo = await PhotoUploader(bot.api_context).get_attachment_from_link(peer_id=user_id, link="https://user-images.githubusercontent.com/28061158/75329873-7f738200-5891-11ea-9565-fd117ea4fc9e.jpg")    
-    await event.answer(message='Пишем при помощи этого', attachment=photo)
+logger = logging.getLogger(__name__)
 
 
-@bot.message_handler(bot.text_filter(['Првиет', 'привет', 'хай']))
-async def hello(event: SimpleBotEvent) -> str:
-    user_data = (await event.api_ctx.users.get(user_ids=event.object.object.message.peer_id)).response[0] # получение даных о пользователе отправившем сообщение
-    await event.answer(f'Привет {user_data.first_name}') # получение имени пользователя
+def main():
+    '''Основная функция запуска бота.'''
+    logging.basicConfig(
+        level=logging.INFO,
+        format=(
+            u'%(filename)s:%(lineno)d: '
+            u'#%(levelname)-8s [%(asctime)s] - %(name)s - %(message)s'
+        )
+    )
+    config = load_config()
+    bot = SimpleLongPollBot(
+        tokens=config.vk_bot.token,
+        group_id=config.vk_bot.group_id
+    )
+    tm = TaskManager()
+    tm.add_task(on_startup(db, config))
+    tm.add_task(bot.run())
+    try:
+        tm.run()
+    except Exception as e:
+        logger.error(e)
 
-bot.run_forever()
+
+if __name__ == '__main__':
+    try:
+        main()
+    except (KeyboardInterrupt, SystemExit):
+        logger.error('Bot stopped')

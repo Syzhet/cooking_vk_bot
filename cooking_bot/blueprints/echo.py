@@ -1,16 +1,19 @@
-from vkwave.bots import DefaultRouter, SimpleBotEvent, simple_bot_message_handler
-from vkwave.bots.utils.uploaders import PhotoUploader
+from vkwave.bots import (
+    DefaultRouter,
+    SimpleBotEvent,
+    simple_bot_message_handler
+)
 
 
-# @bot.message_handler(bot.command_filter('mem')) # отправляем изображение по команде
-# async def send_photo(event: SimpleBotEvent):
-#     user_id = event.object.object.message.peer_id
-#     photo = await PhotoUploader(bot.api_context).get_attachment_from_link(peer_id=user_id, link="https://user-images.githubusercontent.com/28061158/75329873-7f738200-5891-11ea-9565-fd117ea4fc9e.jpg")    
-#     await event.answer(message='Пишем при помощи этого', attachment=photo)
 echo_router = DefaultRouter()
 
 
 @simple_bot_message_handler(echo_router,)
 async def echo(event: SimpleBotEvent) -> str:
-    user_data = (await event.api_ctx.users.get(user_ids=event.object.object.message.peer_id)).response[0] # получение даных о пользователе отправившем сообщение
+    print('----------------------------', event['current_config'])
+    user_data = (
+        await event.api_ctx.users.get(
+            user_ids=event.object.object.message.peer_id
+        )
+    ).response[0]
     await event.answer(f'Привет {user_data.first_name}')

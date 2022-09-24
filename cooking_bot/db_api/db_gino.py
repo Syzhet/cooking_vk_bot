@@ -48,8 +48,9 @@ async def on_startup(db: Gino, config: Config):
     db_name = config.db.database
     port = config.db.port
     uri = f'postgresql://{username}:{password}@localhost:{port}/{db_name}'
-    await db.set_bind(uri)
+    engine = await db.set_bind(uri)
     logging.info("PostgreSQL Connection - OK")
     logging.info('Create PostgreSQL tables')
     await db.gino.create_all()
     logging.info('Create PostgreSQL tables - OK')
+    return engine

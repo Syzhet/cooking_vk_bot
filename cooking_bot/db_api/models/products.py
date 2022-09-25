@@ -10,4 +10,5 @@ class Product(TimedBaseModel):
     name = Column(String(200), nullable=False, unique=True)
     description = Column(Text())
     photo_id = Column(String(200))
+    photo_url = Column(String(200))
     category_id = Column(SmallInteger(), ForeignKey('categories.id'))

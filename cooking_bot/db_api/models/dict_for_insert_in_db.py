@@ -20,37 +20,43 @@ DICT_FOR_INSERT_IN_DB = {
         'loaf': {
             'name': 'Батон',
             'description': 'Свежий белый хлеб',
-            'photo_id': '11111111111111111111',
+            'photo_id': '131647903_457239962_8e54b21c4e936b73e7',
+            'photo_url': 'http://localhost:8888/baton',
             'category_id': 2
         },
         'bread with cereals': {
             'name': 'Хлеб со злаками',
             'description': 'Вкусный хлеб с полезными злаками',
-            'photo_id': '11111111111111111111',
+            'photo_id': '131647903_457239960_6afa8c220fbf73b24b',
+            'photo_url': 'http://localhost:8888/zlaki.jpg',
             'category_id': 2
         },
         'bun': {
             'name': 'Булочка',
             'description': 'Вкусная, ароматная булочка',
-            'photo_id': '11111111111111111111',
+            'photo_id': '131647903_457239959_31ebbe4a02d9c8b7bf',
+            'photo_url': 'http://localhost:8888/bulochka.jpeg',
             'category_id': 1
         },
         'muffin': {
             'name': 'Маффин',
             'description': 'Маффин с шоколадной начинкой',
-            'photo_id': '11111111111111111111',
+            'photo_id': '131647903_457239963_ed43d2dac327e67261',
+            'photo_url': 'http://localhost:8888/muffin',
             'category_id': 1
         },
         'basket': {
             'name': 'Корзиночка',
             'description': 'Для любителей сладкого',
-            'photo_id': '11111111111111111111',
+            'photo_id': '131647903_457239961_3c121952f996874307',
+            'photo_url': 'http://localhost:8888/basket',
             'category_id': 3
         },
         'cheesecake': {
             'name': 'Чизкейк',
             'description': 'Нежнейший, творожный чизкейк',
-            'photo_id': '11111111111111111111',
+            'photo_id': '131647903_457239958_804b86f78a58c164b5',
+            'photo_url': 'http://localhost:8888/cheescake.jpeg',
             'category_id': 3
         }
     }

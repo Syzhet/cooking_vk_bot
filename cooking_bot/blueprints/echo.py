@@ -22,5 +22,5 @@ async def echo(event: SimpleBotEvent) -> str:
                  'Для начала работы с ботом '
                  'нажми на кнопку старт или '
                  'набери команду: /start или !start'),
-        keyboard=create_one_button_keyboard('start')
+        keyboard=create_one_button_keyboard('start', 'inline')
     )

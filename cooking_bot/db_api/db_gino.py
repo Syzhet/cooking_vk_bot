@@ -42,6 +42,7 @@ class TimedBaseModel(BaseModel):
 
 
 async def on_startup(db: Gino, config: Config):
+    '''Создание подключения к базе данных.'''
     logging.info("Setup PostgreSQL Connection")
     username = config.db.user
     password = config.db.password

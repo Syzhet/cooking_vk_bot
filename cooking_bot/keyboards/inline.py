@@ -2,6 +2,7 @@ from vkwave.bots.utils.keyboards import Template
 
 
 async def create_carusel(obj, filter=None, add_back=False):
+    '''Создание "карусели" Вконтакте.'''
     templates = []
     if not filter:
         items = await obj.query.gino.all()

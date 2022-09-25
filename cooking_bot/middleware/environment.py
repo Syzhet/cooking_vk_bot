@@ -7,5 +7,6 @@ class EnvMiddleware(BaseMiddleware):
         self.kwargs = kwargs
 
     async def pre_process_event(self, event: BotEvent):
+        '''Добавление данных о боте к update в момент получения uodate.'''
         event['current_bot'] = self.kwargs
         return MiddlewareResult(True)

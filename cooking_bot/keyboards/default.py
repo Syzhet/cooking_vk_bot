@@ -5,6 +5,7 @@ from vkwave.bots.utils.keyboards.keyboard import ButtonColor
 
 
 def create_one_button_keyboard(button_name: str, type: Optional[str] = None):
+    '''Создание однокнопочный клавиатры в различных вариантах.'''
     if type == 'inline':
         kb = Keyboard(inline=True)
         button_name = button_name
@@ -19,6 +20,7 @@ def create_one_button_keyboard(button_name: str, type: Optional[str] = None):
 
 
 def create_kb_product_description(back_to_cat: str):
+    '''Создание двухкнопочной клавиатуры для раздела с описанием продукта.'''
     kb = Keyboard(inline=True)
     kb.add_callback_button(
         'Назад',

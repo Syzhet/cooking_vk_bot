@@ -37,6 +37,10 @@ async def create_answer(
     filter: int = None,
     add_back: bool = None
 ):
+    '''
+    Подготовка ответного сообщения на нажатие inline-кнопки.
+    Подготовка "карусели" Вконтакте с различными, передаваемыми параметрами.
+    '''
     conversation_message_id = event.object.object.conversation_message_id
     template = await create_carusel(obj, filter, add_back)
     await event.api_ctx.messages.edit(
@@ -54,6 +58,7 @@ async def create_answer(
     StateFilter(fsm=fsm, state=ANY_STATE, for_what=ForWhat.FOR_USER),
 )
 async def cb_start(event: SimpleBotEvent):
+    '''Обработка нажатия inline-кнопки "start".'''
     try:
         await fsm.finish(event=event, for_what=ForWhat.FOR_USER)
     except KeyError:
@@ -73,6 +78,7 @@ async def cb_start(event: SimpleBotEvent):
     StateFilter(fsm=fsm, state=ANY_STATE, for_what=ForWhat.FOR_USER),
 )
 async def cmd_start(event: SimpleBotEvent):
+    '''Обработка текстовой команды "/start" или "!start".'''
     try:
         await fsm.finish(event=event, for_what=ForWhat.FOR_USER)
     except KeyError:
@@ -96,6 +102,7 @@ async def cmd_start(event: SimpleBotEvent):
     ButtonCatFilter()
 )
 async def cb_cat(event: SimpleBotEvent):
+    '''Обработка нажатия одной из inline-кнопок при выборе категории.'''
     category_name = event.object.object.payload['button']
     cat_id = Category.query.where(Category.name == category_name).gino.scalar()
     await fsm.set_state(
@@ -121,6 +128,7 @@ async def cb_cat(event: SimpleBotEvent):
     StateFilter(fsm=fsm, state=CatState.product, for_what=ForWhat.FOR_USER),
 )
 async def cb_back(event: SimpleBotEvent):
+    '''Обработка нажатия inline-кнопки "Назад" в меню выбора категории.'''
     await cb_start(event)
 
 
@@ -130,6 +138,7 @@ async def cb_back(event: SimpleBotEvent):
     StateFilter(fsm=fsm, state=CatState.product, for_what=ForWhat.FOR_USER),
 )
 async def cb_product(event: SimpleBotEvent):
+    '''Обработка нажатия одной из inline-кнопок при выборе продукта.'''
     product_name = event.object.object.payload['button']
     product = await Product.query.where(
         Product.name == product_name

@@ -12,6 +12,11 @@ from .dict_for_insert_in_db import DICT_FOR_INSERT_IN_DB
 
 
 async def insert_obj_in_db(db: Gino, config: Config):
+    '''
+    Подключение к базе данных.
+    Создание схемы базы данных.
+    Вставка данных в базу.
+    '''
     engine = await on_startup(db, config)
     while not engine:
         await asyncio.sleep(0.1)

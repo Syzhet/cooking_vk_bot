@@ -36,7 +36,7 @@ def load_config():
             host_id=int(getenv('HOST_ID')),
         ),
         db=DbConfig(
-            host=getenv('DB_HOST'),
+            host=getenv('DB_ID'),
             database=getenv('POSTGRES_DB'),
             user=getenv('POSTGRES_USER'),
             password=getenv('POSTGRES_PASSWORD'),

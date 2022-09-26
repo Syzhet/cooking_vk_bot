@@ -1,0 +1,8 @@
+.venv
+.env
+*.env
+.github
+.vscode
+infra/
+infra/.env
+.github/

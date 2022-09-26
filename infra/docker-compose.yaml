@@ -1,19 +1,25 @@
 version: '3.3'
 
 services:
-  db:
+  vkdb:
     image : postgres:${TAG}
     restart: always
-    ports:
-      - ${DB_PORT}:5432
     env_file:
       - .env
 
-  web:
+  vknginx:
     image: nginx:1.19.3
     volumes:
       - ./images:/usr/share/nginx/html/
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
-    ports:
-      - "8888:80"
     restart: always
+    depends_on:
+      - vkdb
+
+  vkbot:
+    image: syzhet/coocking_vk_bot:latest
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      - vknginx

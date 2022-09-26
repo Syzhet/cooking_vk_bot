@@ -45,10 +45,11 @@ async def on_startup(db: Gino, config: Config):
     '''Создание подключения к базе данных.'''
     logging.info("Setup PostgreSQL Connection")
     username = config.db.user
+    host = config.db.host
     password = config.db.password
     db_name = config.db.database
     port = config.db.port
-    uri = f'postgresql://{username}:{password}@localhost:{port}/{db_name}'
+    uri = f'postgresql://{username}:{password}@{host}:{port}/{db_name}'
     engine = await db.set_bind(uri)
     logging.info("PostgreSQL Connection - OK")
     logging.info('Create PostgreSQL tables')

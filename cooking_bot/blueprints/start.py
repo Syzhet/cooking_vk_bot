@@ -1,29 +1,19 @@
 from typing import Union
 
-from vkwave.bots import (
-    DefaultRouter,
-    SimpleBotEvent,
-    simple_bot_message_handler,
-    simple_bot_handler,
-)
-from vkwave.types.bot_events import BotEventType
-from vkwave.bots import PayloadFilter, CommandsFilter, EventTypeFilter
-from vkwave.bots.fsm import (
-    FiniteStateMachine,
-    ForWhat,
-    StateFilter,
-    ANY_STATE,
-    NO_STATE
-)
+from vkwave.bots import (CommandsFilter, DefaultRouter, EventTypeFilter,
+                         PayloadFilter, SimpleBotEvent, simple_bot_handler,
+                         simple_bot_message_handler)
+from vkwave.bots.fsm import (ANY_STATE, NO_STATE, FiniteStateMachine, ForWhat,
+                             StateFilter)
 from vkwave.bots.utils.uploaders import PhotoUploader
+from vkwave.types.bot_events import BotEventType
 
-from cooking_bot.keyboards.inline import create_carusel
-from cooking_bot.keyboards.default import create_kb_product_description
 from cooking_bot.db_api.models.categories import Category
 from cooking_bot.db_api.models.products import Product
-from cooking_bot.utils.state import CatState
 from cooking_bot.filters.button_filter import ButtonCatFilter
-
+from cooking_bot.keyboards.default import create_kb_product_description
+from cooking_bot.keyboards.inline import create_carusel
+from cooking_bot.utils.state import CatState
 
 start_router = DefaultRouter()
 

@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Text, SmallInteger, ForeignKey
+from sqlalchemy import Column, ForeignKey, Integer, SmallInteger, String, Text
 
 from ..db_gino import TimedBaseModel
 

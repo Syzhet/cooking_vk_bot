@@ -1,13 +1,11 @@
 import logging
-
-from typing import List
 from datetime import datetime
+from typing import List
 
-from gino import Gino
 import sqlalchemy as sa
+from gino import Gino
 
 from cooking_bot.config import Config
-
 
 db = Gino()
 

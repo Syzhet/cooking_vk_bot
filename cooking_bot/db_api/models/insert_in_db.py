@@ -1,14 +1,15 @@
-import logging
 import asyncio
+import logging
 
-from gino import Gino
 from asyncpg.exceptions import UniqueViolationError
+from gino import Gino
+
+from cooking_bot.config import Config
 
 from ..db_gino import on_startup
-from cooking_bot.config import Config
 from .categories import Category
-from .products import Product
 from .dict_for_insert_in_db import DICT_FOR_INSERT_IN_DB
+from .products import Product
 
 
 async def insert_obj_in_db(db: Gino, config: Config):

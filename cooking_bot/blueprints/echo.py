@@ -1,11 +1,7 @@
-from vkwave.bots import (
-    DefaultRouter,
-    SimpleBotEvent,
-    simple_bot_message_handler
-)
+from vkwave.bots import (DefaultRouter, SimpleBotEvent,
+                         simple_bot_message_handler)
 
 from cooking_bot.keyboards.default import create_one_button_keyboard
-
 
 echo_router = DefaultRouter()
 

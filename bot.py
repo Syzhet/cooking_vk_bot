@@ -3,11 +3,10 @@ import logging
 from dotenv import load_dotenv
 from vkwave.bots import SimpleLongPollBot, TaskManager
 
-
+from cooking_bot.blueprints.register_all_routers import register_routers
 from cooking_bot.config import load_config
 from cooking_bot.db_api.db_gino import db
 from cooking_bot.db_api.models.insert_in_db import insert_obj_in_db
-from cooking_bot.blueprints.register_all_routers import register_routers
 from cooking_bot.middleware.register_all_middlewares import register_middleware
 
 load_dotenv()

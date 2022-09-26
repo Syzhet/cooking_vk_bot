@@ -4,6 +4,8 @@ services:
   vkdb:
     image : postgres:${TAG}
     restart: always
+    volumes:
+      - vkbot_postgres_data:/var/lib/postgresql/data/
     env_file:
       - .env
 
@@ -23,3 +25,6 @@ services:
       - .env
     depends_on:
       - vknginx
+
+volumes:
+  vkbot_postgres_data:
